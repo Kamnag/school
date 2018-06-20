@@ -22,19 +22,6 @@ class SchoolController {
                     .with('groups.students')                                
                     .fetch()
     return schools
-
-
-
-    // const school = School.find({id})
-    // return school
-    // const groups = await school.groups().fetch()
-
-    // school.groups = groups
-
-    // response.status(200).json({
-    //   message: 'Here is your school.',
-    //   data: school
-    // })
   }
 
   async update({ request, response }) {
