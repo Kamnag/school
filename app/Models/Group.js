@@ -5,8 +5,7 @@ const Model = use('Model')
 class Group extends Model {
     students () {
         return this
-          .hasMany('App/Models/Student')
-    }
+          .belongsToMany('App/Models/Student').pivotTable('student_group')    }
 
     school (){
     	return this

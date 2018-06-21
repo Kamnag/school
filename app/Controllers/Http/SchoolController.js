@@ -21,7 +21,10 @@ class SchoolController {
                     .where({ id })     
                     .with('groups.students')                                
                     .fetch()
-    return schools
+                    
+      // const schools = await School.find({ id })
+      // const students = await schools.students().fetch()
+    return schools.pluck('groups')
   }
 
   async update({ request, response }) {
