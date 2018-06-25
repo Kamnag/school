@@ -14,21 +14,26 @@ class StudentController {
 
   async store({ request, response }) {   
     const { id, name, group_id, roll } = request.post()
+    return group_id
     await Student.create({ id, name })
     const group = await Group.findBy('id', group_id)
     const student = await Student.find(student_id)
     return await student.groups().sync([group.id], (row) => {
       row.roll_no = roll
-      })    
+    })
   }
 
-  async show({ request, response, params: { id } }) {
+  async show({ session, request, response, params: { id } }) {
+    // session.put('id', id)
+    // response.redirect('/schools')    
     const students = await Student
-                    .query()    
-                    .where({ id })                 
-                    .with('groups.school')                                       
-                    .fetch()
-    return students
+    .query()    
+    .where({ id })                 
+    .with('groups.school')                                       
+    .fetch()
+    // return session.flashAll()
+
+    // return students
   }
 
   async delete({ request, response }) {
@@ -36,8 +41,8 @@ class StudentController {
     console.log(student)
     await student.delete()
     response.status(200).json({
-    message: 'deleted',
-    data: ''
+      message: 'deleted',
+      data: ''
     })
   }
 }
@@ -89,7 +94,7 @@ module.exports = StudentController
     // const studentsProfiles = await students.groups().fetch()
 
 
-      
+
       // const students = await Student.query().with('groups').where('id', sid).fetch()
       // return await students.groups().fetch()
 

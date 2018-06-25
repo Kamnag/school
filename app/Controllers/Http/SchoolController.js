@@ -28,7 +28,7 @@ class SchoolController {
   }
 
   async update({ request, response }) {
-    const { scid, scname } = request.post()
+    const { id, name } = request.post()
     return await school.save()
   }
 

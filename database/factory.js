@@ -11,12 +11,23 @@
 |
 */
 
-// const Factory = use('Factory')
+const Factory = use('Factory')
 
-/**
-  Factory.blueprint('App/Models/User', (faker) => {
+
+ Factory.blueprint('App/Models/Student', (faker) => {
+  	// const student = await Factory
+  	// 	.model('App/Models/Student')
+  	// 	.createMany(5)
     return {
-      username: faker.username()
+      id: faker.integer()
+      name: faker.string()
     }
   })
-*/
+
+//  Factory.blueprint('App/Models/Group', (faker) => {
+//   return {
+//     id: faker.integer(),
+//     name: await Hash.make(faker.string())
+//   }
+// })
+

@@ -31,7 +31,7 @@ const providers = [
 |
 */
 const aceProviders = [
-  '@adonisjs/lucid/providers/MigrationsProvider'
+  '@adonisjs/lucid/providers/MigrationsProvider', '@adonisjs/vow/providers/VowProvider'
 ]
 
 /*
@@ -57,5 +57,12 @@ const aliases = {}
 |
 */
 const commands = []
+
+//test environment
+// const aceProviders = [
+//   '@adonisjs/vow/providers/VowProvider'
+// ]
+
+
 
 module.exports = { providers, aceProviders, aliases, commands }
