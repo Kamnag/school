@@ -7,9 +7,23 @@ const Student = use('App/Models/Student')
 
 trait('Test/ApiClient')
 
-test('get list of students', async ({ client }) => {
+before(async () => {
+
+	const students = await Factory.model('......').createMany(5)
+	for(let student of students){
+		const group = await Factory.model('...').create({ student_id: student.id })	
+	// }
+	// const user = await Factory.model('App/Models/User').create()
+	// const post = await Factory.model('App/Models/Post').make()
+
+	// await user.posts().save(post)
+
+}
+})
+
+test('assign and get particular student', async ({ client }) => {
   await Student.create({
-    id: '97',
+    id: '98',
     name: '97',
     // group_id: '97',
     // roll: '97'
@@ -19,8 +33,8 @@ test('get list of students', async ({ client }) => {
   response.assertStatus(200)
   response.assertJSONSubset([{
     // created_at: "2018-06-15 15:03:14",
-    id: 1,
-    name: 'test1'
+    id: 97,
+    name: '97'
     // updated_at: "2018-06-15 15:03:14"
   }])
 })

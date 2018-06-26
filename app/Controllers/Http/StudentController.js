@@ -14,10 +14,9 @@ class StudentController {
 
   async store({ request, response }) {   
     const { id, name, group_id, roll } = request.post()
-    return group_id
-    await Student.create({ id, name })
+    const student = await Student.create({ id, name })
     const group = await Group.findBy('id', group_id)
-    const student = await Student.find(student_id)
+    // const student = await Student.find(student_id)
     return await student.groups().sync([group.id], (row) => {
       row.roll_no = roll
     })

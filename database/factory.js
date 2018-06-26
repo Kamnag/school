@@ -14,20 +14,25 @@
 const Factory = use('Factory')
 
 
- Factory.blueprint('App/Models/Student', (faker) => {
-  	// const student = await Factory
-  	// 	.model('App/Models/Student')
-  	// 	.createMany(5)
-    return {
-      id: faker.integer()
-      name: faker.string()
-    }
-  })
+Factory.blueprint('App/Models/Student', (faker) => {
+  		// const student = Factory
+  		// .model('App/Models/Student')
+  		// .createMany(5)
+  		return {
+  			name: faker.name()
+  		}
+  	})
 
-//  Factory.blueprint('App/Models/Group', (faker) => {
-//   return {
-//     id: faker.integer(),
-//     name: await Hash.make(faker.string())
-//   }
-// })
+Factory.blueprint('App/Models/Group', (faker) => {
+	return {
+		name: faker.name(),
+		school_id: faker.integer({ min: 1, max: 20 })
+	}
+})
+
+Factory.blueprint('App/Models/School', (faker) => {
+	return {
+		name: faker.name()
+	}
+})
 
