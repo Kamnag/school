@@ -1,6 +1,6 @@
 'use strict'
 
-const { test, trait, before, after } = use('Test/Suite')('Student')
+const { test, trait, before, after } = use('Test/Suite')('School')
 const Factory = use('Factory')
 const Database = use('Database')
 const School = use('App/Models/School')
@@ -29,7 +29,7 @@ test('assign and get particular school', async ({ client }) => {
 
   const response = await client.get('/schools').end()
 
-  console.log(response.body)
+  // console.log(response.body)
   response.assertStatus(200)
   response.assertJSONSubset([{
     // created_at: "2018-06-15 15:03:14",
@@ -38,6 +38,19 @@ test('assign and get particular school', async ({ client }) => {
     // updated_at: "2018-06-15 15:03:14"
   }])
   
+})
+
+test('deleting user', async ({ client }) => {
+  const response = await client.delete('/schools')
+  .send({
+    id: 2,
+    name: 'Willie Parker'
+  }).end()
+  response.assertStatus(404)
+})
+
+test('closing http request', async ({ client }) => {
+  await client.get('schools').end()
 })
 
 // before (async () => {

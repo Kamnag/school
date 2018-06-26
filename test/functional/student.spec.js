@@ -21,10 +21,17 @@ trait('Test/ApiClient')
 // }
 // })
 
+
+test('basic http test', async ({ client }) =>{
+
+	client.get('students')
+
+})
+
 test('assign and get particular student', async ({ client }) => {
   // await Student.create({
   //   id: '97',
-  //   name: '97',
+  //   name: '97'
   // })
 
   const response = await client.get('/students').end()
@@ -34,7 +41,7 @@ test('assign and get particular student', async ({ client }) => {
     id: 1,
     name: 'Brandon Figueroa'
     // updated_at: "2018-06-15 15:03:14"
-  }])
+}])
   
 })
 
@@ -42,6 +49,19 @@ test('assign and get particular student', async ({ client }) => {
 //   const student = await Factory.model('App/Models/Student').create()
 //  })
 
+test('deleting user', async ({ client }) => {
+	const response = await client.delete('/students')
+	.send({
+		id: 2,
+		name: 'Jared Hines'
+	}).end()
+	response.assertStatus(404)
+})
+
+test('closing http request', async ({ client }) => {
+	await client.get('students').end()
+})
+
 test('make sure 2 + 2 is 4', async ({ assert }) => {
-  assert.equal(2 + 2, 4)
+	assert.equal(2 + 2, 4)
 })

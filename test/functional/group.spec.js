@@ -1,6 +1,6 @@
 'use strict'
 
-const { test, trait, before, after } = use('Test/Suite')('Student')
+const { test, trait, before, after } = use('Test/Suite')('Group')
 const Factory = use('Factory')
 const Database = use('Database')
 const Group = use('App/Models/Group')
@@ -36,6 +36,19 @@ test('assign and get particular group', async ({ client }) => {
     // updated_at: "2018-06-15 15:03:14"
   }])
   
+})
+
+test('deleting user', async ({ client }) => {
+  const response = await client.delete('/groups')
+  .send({
+    id: 2,
+    name: 'Ethan Woods'
+  }).end()
+  response.assertStatus(404)
+})
+
+test('closing http request', async ({ client }) => {
+  await client.get('groups').end()
 })
 
 // before (async () => {
