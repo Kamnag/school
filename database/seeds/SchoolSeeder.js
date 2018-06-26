@@ -14,7 +14,7 @@ const Factory = use('Factory')
 
 class SchoolSeeder {
   async run () {
-  	const students = await Factory.model('App/Models/School').create()
+  	// const students = await Factory.model('App/Models/School').create()
 
   }
 }

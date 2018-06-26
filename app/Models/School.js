@@ -7,9 +7,9 @@ class School extends Model {
 		return this.hasMany('App/Models/Group')
 		}
 
-	static get hidden () {
-    return ['id']
-  }
+	// static get hidden () {
+ //    return ['id']
+ //  }
 }
 
 module.exports = School

@@ -18,19 +18,20 @@ const Chance = use('chance')
 
 class StudentSeeder {
 	async run () {
-		// const students = await Database.table('students')
+		// const studentss = await Database.table('studentss')
 		const chance = new Chance()
-		const student = await Factory.model('App/Models/Student').create()
+		const students = await Factory.model('App/Models/Student').create()
 		const group = await Factory.model('App/Models/Group').make()
-		// const schools = await Factory.model('App/Models/School').make()
+		const schools = await Factory.model('App/Models/School').make()
 		// console.log(groups)
-		await student.groups().save(group)
+		await students.groups().save(group)
+		await schools.groups().save(group)
 
-		await student.groups().sync([group.id], (row) => {
+		await students.groups().sync([group.id], (row) => {
 	      row.roll_no = chance.integer({ min: 1, max: 10 })
 	    })
 		
-		console.log(student)
+		console.log(students)
 	}
 }
 
@@ -42,13 +43,13 @@ module.exports = StudentSeeder
 
 // await groups.school().save(schools)
 
-		// const students = await Factory.model('App/Models/Student').createMany(10)
-		// for(let student of students){
-		// 	const groups = await Factory.model('App/Models/Group').create({ student_id: student.id })	
+		// const studentss = await Factory.model('App/Models/Student').createMany(10)
+		// for(let students of studentss){
+		// 	const groups = await Factory.model('App/Models/Group').create({ students_id: students.id })	
 		// }
 
 
-		// const students = await Database.table('students').insert([
+		// const studentss = await Database.table('studentss').insert([
 
 		// {
 		// 	id: '39',
